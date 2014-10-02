@@ -1,0 +1,89 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("visualization", "1", { packages: ["gauge,corechart"] });
+        google.setOnLoadCallback(drawGaugeChart);
+        function drawGaugeChart() {
+
+            var data = google.visualization.arrayToDataTable([
+              ['Label', 'Value'],
+              ['NOx', 80],
+              ['NO', 55],
+              ['NO2', 68],
+              ['CO', 68],
+              ['PM10', 68],
+              ['O3', 68]
+            ]);
+            var options = {
+                width: 500, height: 120,
+                redFrom: 90, redTo: 100,
+                yellowFrom: 75, yellowTo: 90,
+                minorTicks: 5
+            };
+            var chart = new google.visualization.Gauge(document.getElementById('divGauges'));
+            chart.draw(data, options);
+        }
+
+    </script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+</head>
+<body>
+    <div id="divGauges" style="width: 500px; height: 120px;"></div>
+    <div id="divHistoryPM10" style="width: 500px; height: 120px;"></div>
+    <div id="divHistoryCO" style="width: 500px; height: 120px;"></div>
+    <div id="divHistoryNO" style="width: 500px; height: 120px;"></div>
+    <div id="divHistoryNOX" style="width: 500px; height: 120px;"></div>
+    <div id="divHistoryNO2" style="width: 500px; height: 120px;"></div>
+    <div id="divHistoryO3" style="width: 500px; height: 120px;"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/locations.js"></script>
+    <script>
+
+        $(function () {
+            $.ajax({
+                url: "http://data.bathhacked.org/resource/hqr9-djir.json"
+            }).done(function (data) {
+
+                var j = 0;
+                jQuery.each(locations, function (key, locationObj) {
+
+                    locations[key].PM10 = new Array(['Date Measured', 'Value']);
+                    locations[key].NOX = new Array(['Date Measured', 'Value']);
+                    locations[key].NO = new Array(['Date Measured', 'Value']);
+                    locations[key].NO2 = new Array(['Date Measured', 'Value']);
+                    locations[key].CO = new Array(['Date Measured', 'Value']);
+                    locations[key].O3 = new Array(['Date Measured', 'Value']);
+
+                    $.each(data, function (i, dataObj) {
+                        if (dataObj.sensor_location_name = locationObj.title) {
+                            if (dataObj.pm10 && Number(dataObj.pm10) < 250) locations[key].PM10.push([dataObj.datetime, Number(dataObj.pm10)]);
+                            if (dataObj.nox) locations[key].NOX.push([dataObj.datetime, Number(dataObj.nox)]);
+                            if (dataObj.no) locations[key].NO.push([dataObj.datetime, Number(dataObj.no)]);
+                            if (dataObj.no2) locations[key].NO2.push([dataObj.datetime, Number(dataObj.no2)]);
+                            if (dataObj.co) locations[key].CO.push([dataObj.datetime, Number(dataObj.co)]);
+                            if (dataObj.o3) locations[key].O3.push([dataObj.datetime, Number(dataObj.o3)]);
+                        }
+                    });
+
+                    var PM10VisData = google.visualization.arrayToDataTable(locations[key].PM10);
+                    var options = {
+                        //title: 'PM10',
+                        //hAxis: { title: 'Date', titleTextStyle: { color: 'red' } }
+                    };
+                    var PM10chart = new google.visualization.ColumnChart(document.getElementById('divHistoryPM10'));
+                    if (j == 0) {
+                        PM10chart.draw(PM10VisData, options);
+                    }
+
+                    j++;
+                });
+                
+            });
+
+        });
+
+    </script>
+</body>
+</html>

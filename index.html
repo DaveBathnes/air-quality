@@ -1,0 +1,524 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Current Air Pollution Levels | Bath and North East Somerset Council</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/jquery-ui.min.css" rel="stylesheet">
+    <link href="css/jquery-ui.structure.min.css" rel="stylesheet">
+    <link href="css/jquery-ui.theme.min.css" rel="stylesheet">
+    <link href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .atoz a {
+            width: 35px;
+            margin-top: 5px;
+        }
+        .map { height: 250px; }
+    </style>
+</head>
+<body>
+    <div class="container" id="topContent">
+        <a href="http://www.bathnes.gov.uk"><img src="images/banes_logo_0.png" alt="Logo" /></a>
+        <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-warning">Search</button>
+        </form>
+    </div>
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://www.bathnes.gov.uk">Home</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="#about">Pay for it</a></li>
+                    <li><a href="#contact">Report it</a></li>
+                    <li><a href="#contact">Give us feedback on</a></li>
+                    <li><a href="#contact">What's on</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../navbar/">Contact us</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-3 hidden-sm hidden-xs">
+                <div>
+                    <img src="images/hacked.png" width="100%" />
+                </div>
+                <div class="atoz">
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">A</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">B</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">C</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">D</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">E</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">F</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">G</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">H</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">I</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">J</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">K</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">L</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">M</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">N</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">O</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">P</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">Q</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">R</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">S</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">T</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">U</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">V</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">W</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">X</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">Y</a>
+                    <a href="http://www.bathnes.gov.uk/a-z/a" class="btn btn-success">Z</a>
+                </div><br />
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="http://www.bathnes.gov.uk/user">Login/Register</a></li>
+                </ul><br />
+
+                <div>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="#">Air Quality</a></li>
+                        <li><a href="http://www.bathnes.gov.uk/services/environment/pollution/air-quality/action-plan">Action Plan</a></li>
+                        <li><a href="http://www.bathnes.gov.uk/services/environment/pollution/air-quality/air-pollution-and-your-health">Air Pollution and Your Health</a></li>
+                        <li><a href="http://www.bathnes.gov.uk/services/environment/pollution/air-quality/air-quality-management-area-bath">Air Quality Management Area - Bath</a></li>
+                        <li><a href="http://www.bathnes.gov.uk/services/environment/pollution/air-quality/air-quality-management-area-keynsham">Air Quality Management Area - Keynsham</a></li>
+                        <li><a href="http://www.bathnes.gov.uk/services/environment/pollution/air-quality/air-quality-management-area-saltford-proposed">Air Quality Management Area - Saltford</a></li>
+                        <li class="disabled"><a href="">Current Air Pollution Levels</a></li>
+                        <li><a href="http://www.bathnes.gov.uk/services/environment/pollution/air-quality/lez-study">LEZ Study</a></li>
+                        <li><a href="http://www.bathnes.gov.uk/services/environment/pollution/air-quality/monitoring-air-pollution">Monitoring Air Pollution</a></li>
+                        <li><a href="http://www.bathnes.gov.uk/services/environment/pollution/air-quality/reducing-air-pollution">Reducing Air Pollution</a></li>
+                        <li><a href="http://www.bathnes.gov.uk/services/environment/pollution/air-quality/reports">Reports</a></li>
+                        <li><a href="http://www.bathnes.gov.uk/services/environment/pollution/air-quality/smokey-vehicles">Smokey Vehicles</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-8 col-lg-9 col-xs-12">
+                <!-- Main component for a primary marketing message or call to action -->
+                <div class="jumbotron">
+                    <h1>Air pollution levels</h1>
+                    <p>The following graphs show current monitoring data taken from the continuous analysers located around Bath. Enter your address below to see the monitors in order of distance.</p>
+                    <div class="input-group">
+                        <span class="input-group-addon">Address</span>
+                        <input type="text" class="form-control" id="txtAddress" placeholder="Your address">
+                    </div>
+                </div>
+
+                <h2>Air quality monitors</h2>
+                <ul class="nav nav-tabs" id="tabsLocations" role="tablist"></ul>
+                <div class="tab-content" id="divTabContent"></div>
+            </div>
+        </div>
+
+        <hr />
+        <!-- Site footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12 col-md-6">
+                    <ul class="list-unstyled">
+                        <li class="pull-right"><a href="#top">Back to top</a></li>
+                        <li><a href="http://www.bathnes.gov.uk/accessibility">Accessibility</a></li>
+                        <li><a href="http://www.bathnes.gov.uk/disclaimer-and-privacy-statement">Disclaimer &amp; Privacy Policy</a></li>
+                        <li><a href="http://www.bathnes.gov.uk/cookies">Cookies</a></li>
+                        <li><a href="http://www.bathnes.gov.uk/website-advertising">Advertising</a></li>
+                    </ul>
+                    <p>Made by <a href="http://www.daveroweit.co.uk" rel="nofollow">Dave Rowe</a>. Contact him at <a href="https://twitter.com/glosterairways">glosterairways</a>.</p>
+                </div>
+            </div>
+        </footer>
+    </div> <!-- /container -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- The locations json (included as a variable just to make things easier )-->
+    <script src="js/locations.js"></script>
+    <!-- jQuery UI (for autocomplete functionality) -->
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script>
+        var input = document.getElementById('txtAddress');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        var data = null;
+        google.load("visualization", "1", { packages: ["gauge,corechart"] });
+
+        $(function () {
+            jQuery.fn.reverse = function () {
+                this.pushStack(this.get().reverse());
+                return this;
+            }
+
+            ////////////////////////////////////////////
+            /// Event listener for selecting an address
+            ////////////////////////////////////////////
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                $("#tabsLocations li span").remove();
+
+                var place = autocomplete.getPlace();
+                if (!place.geometry) {
+                    return;
+                }
+                var userLat = place.geometry.location.lat();
+                var userLng = place.geometry.location.lng();
+
+                var address = '';
+                if (place.address_components) {
+                    address = [
+                      (place.address_components[0] && place.address_components[0].short_name || ''),
+                      (place.address_components[1] && place.address_components[1].short_name || ''),
+                      (place.address_components[2] && place.address_components[2].short_name || '')
+                    ].join(' ');
+                }
+
+                var h = 0;
+                // calculate the distances between user and each location - add the distance to the location object
+                jQuery.each(locations, function (key, val) {
+                    var distance = getDistance(userLat, userLng, Number(val.latlng.latitude), Number(val.latlng.longitude));
+                    locations[key].distance = distance;
+                    // update the display of the list items, to include the distance, and the sort value
+                    $('#tabsLocations li').each(function (i, val) {
+                        if (locations[key].title == this.innerText.trim()) {
+                            $(this).find('a').append('<span class="label label-danger">' + distance + 'km</span>');
+                        }
+                    });
+
+                    //$('#map' + key).show();
+                    //var map = L.map('map' + key).setView([val.latlng.latitude, val.latlng.longitude], 18);
+                    //L.tileLayer('http://{s}.tiles.mapbox.com/v3/librarieshacked.jefmk67b/{z}/{x}/{y}.png', {
+                    //    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>[…]',
+                    //    maxZoom: 22
+                    //}).addTo(map);
+                    //var monitorMarker = L.marker([val.latlng.latitude, val.latlng.longitude], { title: locations[key].title + ' ' + locations[key].distance + 'km away' }).addTo(map);
+                    //monitorMarker.bindPopup(locations[key].title + ' ' + locations[key].distance + 'km away').openPopup();
+                    //var userMarker = L.marker([userLat, userLng], { title: 'Your location' }).addTo(map);
+                    //monitorMarker.bindPopup('Your location: ' + address).openPopup();
+
+                    h++;
+                });
+
+                // accending sort
+                function asc_sort(a, b) {
+                    return ($(b).find('span').text()) < ($(a).find('span').text()) ? 1 : -1;
+                }
+                // decending sort
+                function dec_sort(a, b) {
+                    return ($(b).text()) > ($(a).text()) ? 1 : -1;
+                }
+                $("#tabsLocations li").sort(asc_sort).appendTo('#tabsLocations');
+                $('#tabsLocations li:first-child').tab('show') // Select tab by name
+                
+            });
+
+            ////////////////////////////////////////////
+            /// OnLoad: Get the data!
+            ////////////////////////////////////////////
+            $.ajax({
+                url: "http://data.bathhacked.org/resource/hqr9-djir.json"
+            }).done(function (data) {
+                var j = 0;
+                jQuery.each(locations, function (key, locationObj) {
+                    locations[key].PM10 = new Array(['Date Measured', 'Value', { role: 'style' }]);
+                    locations[key].NOX = new Array(['Date Measured', 'Value']);
+                    locations[key].NO = new Array(['Date Measured', 'Value']);
+                    locations[key].NO2 = new Array(['Date Measured', 'Value', { role: 'style' }]);
+                    locations[key].CO = new Array(['Date Measured', 'Value']);
+                    locations[key].O3 = new Array(['Date Measured', 'Value', { role: 'style' }]);
+                    $.each(data, function (i, dataObj) {
+                        if (dataObj.sensor_location_name == locationObj.title) {
+                            if (dataObj.pm10 && Number(dataObj.pm10) < 250 && locations[key].PM10.length < 81) {
+                                var pm10Val = Number(dataObj.pm10)
+                                var colour = '#9CFF9C';
+                                if (pm10Val <= 101) colour = '#CE30FF';
+                                if (pm10Val <= 100) colour = '#990000';
+                                if (pm10Val <= 91) colour = '#FF0000';
+                                if (pm10Val <= 83) colour = '#FF6464';
+                                if (pm10Val <= 75) colour = '#FF9A00';
+                                if (pm10Val <= 66) colour = '#FFCF00';
+                                if (pm10Val <= 58) colour = '#FFFF00';
+                                if (pm10Val <= 50) colour = '#31CF00';
+                                if (pm10Val <= 33) colour = '#31FF00';
+                                if (pm10Val <= 16) colour = '#9CFF9C';
+
+                                locations[key].PM10.push([moment(dataObj.datetime).format('ddd HH:mm'), Number(dataObj.pm10), colour]);
+                            }
+
+                            if (dataObj.nox && locations[key].NOX.length < 81) {
+                                locations[key].NOX.push([moment(dataObj.datetime).format('ddd HH:mm'), Number(dataObj.nox)]);
+                            }
+
+                            if (dataObj.no && locations[key].NO.length < 81) {
+                                locations[key].NO.push([moment(dataObj.datetime).format('ddd HH:mm'), Number(dataObj.no)]);
+                            }
+
+                            if (dataObj.no2 && locations[key].NO2.length < 81) {
+
+                                var no2Val = Number(dataObj.no2)
+                                var colour = '#9CFF9C';
+                                if (no2Val <= 601) colour = '#CE30FF';
+                                if (no2Val <= 600) colour = '#990000';
+                                if (no2Val <= 534) colour = '#FF0000';
+                                if (no2Val <= 467) colour = '#FF6464';
+                                if (no2Val <= 400) colour = '#FF9A00';
+                                if (no2Val <= 334) colour = '#FFCF00';
+                                if (no2Val <= 267) colour = '#FFFF00';
+                                if (no2Val <= 200) colour = '#31CF00';
+                                if (no2Val <= 134) colour = '#31FF00';
+                                if (no2Val <= 67) colour = '#9CFF9C';
+
+                                locations[key].NO2.push([moment(dataObj.datetime).format('ddd HH:mm'), Number(dataObj.no2), colour]);
+                            }
+
+
+                            if (dataObj.co && locations[key].CO.length < 81) {
+                                locations[key].CO.push([moment(dataObj.datetime).format('ddd HH:mm'), Number(dataObj.co)]);
+                            }
+
+
+                            if (dataObj.o3 && locations[key].O3.length < 81) {
+                                var o3Val = Number(dataObj.o3)
+                                var colour = '#9CFF9C';
+                                if (o3Val <= 241) colour = '#CE30FF';
+                                if (o3Val <= 240) colour = '#990000';
+                                if (o3Val <= 213) colour = '#FF0000';
+                                if (o3Val <= 187) colour = '#FF6464';
+                                if (o3Val <= 160) colour = '#FF9A00';
+                                if (o3Val <= 140) colour = '#FFCF00';
+                                if (o3Val <= 120) colour = '#FFFF00';
+                                if (o3Val <= 100) colour = '#31CF00';
+                                if (o3Val <= 66) colour = '#31FF00';
+                                if (o3Val <= 33) colour = '#9CFF9C';
+
+                                locations[key].O3.push([moment(dataObj.datetime).format('ddd HH:mm'), Number(dataObj.o3), colour]);
+                            }
+                        }
+                    });
+                    j++;
+                });
+
+                ////////////////////////////////////
+                /// Construct the tabs and sections
+                ////////////////////////////////////
+                var j = 0;
+                jQuery.each(locations, function (key, val) {
+                    var html = '<h3>' + val.title + '</h3>';
+                    html += '<div id="map' + key + '" class="map" style="display: none"></div>';
+                    html += '<h4 id="hdHistoryPM10' + key + '">Particulate matter (PM10) graph</h4>';
+                    html += '<div id="divHistoryPM10' + key + '" style="width: 800px; height: 300px;"></div>';
+                    html += '<p class="pPM10' + key + '">Particles are a mixture of organic and inorganic matter. The size of the particle determines the time it remains in the air and it interaction with humans. Particles above a diameter of 10 micrometres (mm) will be trapped by the nose and pharynx whilst those smaller will be able to penetrate the lung and alveoli. For this reason the monitoring of particles usually concentrates on the particles likely to be deposited in the lungs, referred to as PM10.</p>'
+                    html += '<p class="pPM10' + key + '">Particles are derived from a number of sources. Primary particles are those emitted directly into the atmosphere (such as in vehicle exhaust). Secondary particles are formed by chemical reactions.</p>';
+                    html += '<p class="pPM10' + key + '">Some are released directly into the environment by power stations, factories and motor vehicles. Vehicles contribute approximately 25% of particle emissions across the UK but this figure is thought to be much higher in urban areas. Of this 25% Diesel vehicles are responsible for 19%. Other sources of particles include those formed as sulphates and nitrates from Sulphur Dioxide and Nitrogen Dioxide and natural particles from spores and grains of pollen.</p>';
+                    html += '<p class="pPM10' + key + '">Particles are implicated in the increase of airway obstruction and underlying lung disease conditions. Also some particles (including hydrocarbons) may be carcinogenic.</p>';
+
+                    html += '<h4 id="hdHistoryNO2' + key + '">Nitrogen dioxide (NO2) graph</h4>';
+                    html += '<div id="divHistoryNO2' + key + '" style="width: 800px; height: 300px;"></div>';
+                    html += '<p class="pNO2' + key + '">Nitrogen dioxide (NO2) is one of the most dangerous of the oxides of nitrogen to human health. It is released directly into the environment or formed by the conversion of nitric oxide (NO) in oxygen or ozone. The biggest contributions to nitrogen dioxide levels in the UK are from motor vehicles, electrical supply industry and the industrial and commercial sectors. Domestic heating also forms a significant source in urban areas.</p>'
+                    html += '<p class="pNO2' + key + '">In general the levels of Nitrogen dioxide peak in urban areas during the two rush hour periods of the day. The greatest levels are generally on cold days with low wind speeds when a blanket of cold air traps the nitrogen dioxide at ground level, allowing levels to build.</p>';
+                    html += '<p class="pNO2' + key + '">Nitrogen Dioxide has shown to be an irritant with the ability to increase sensitivity to allergens at high levels. There is evidence that exposure can increase the risk to children of respiratory infections and cause impairment of lung functions in later life. Asthmatics and those suffering from emphysema and other breathing problems are thought to be especially sensitive to the levels of Nitrogen dioxide.</p>';
+                    html += '<p class="pNO2' + key + '">In Bath and North East Somerset two methods of Nitrogen dioxide measuring are used. The first is diffusion tubes which consist of open tubes with a pollutant absorbing gel at one end. The relative cheapness of this method allows for sampling at a large number of sites - currently about 77 in Bath & North East Somerset. The tubes can be used to measure the average levels of pollutants but are unable to measure peak values. The second measurements are done using continuous analysers which measure the oxides of nitrogen using chemi-luminescence. Five of these analysers are located at London Road (2), Windsor Bridge, the Guildhall and Bath Road, Saltford.</p>';
+
+                    html += '<h4 id="hdHistoryNOX' + key + '">Nitric oxides (NOX) graph</h4>';
+                    html += '<div id="divHistoryNOX' + key + '" style="width: 800px; height: 300px;"></div>';
+                    html += '<p class="pNOX' + key + '">This encompasses nitric oxide (NO) and nitrogen dioxide (NO2).</p>'
+
+                    html += '<h4 id="hdHistoryNO' + key + '">Nitric oxide (NO) graph</h4>';
+                    html += '<div id="divHistoryNO' + key + '" style="width: 800px; height: 300px;"></div>';
+                    html += '<p class="pNO' + key + '">Ozone (O3) is a very reactive chemical formed by the reaction of nitrogen dioxide and sunlight. The formation of ozone in the atmosphere is also contributed to by the presence of Volatile Organic Compounds (VOC).</p>'
+                    html += '<p class="pNO' + key + '">Ozone is removed at night and inside buildings by reactions with surfaces. Ozone is found in lowest concentrations next to busy roads where to the release of nitric oxide (NO) from vehicles are highest. Nitric oxide reacts with ozone and removes it from the atmosphere. The highest concentrations of ozone occur during the summer months when sunlight is at its strongest in rural areas where there is little nitric oxide from vehicles to remove the ozone.</p>';
+                    html += '<p class="pNO' + key + '">High concentrations of ozone at ground level can irritate the delicate surface tissues of the body, including lungs, eyes and nose.</p>';
+                    html += '<p class="pNO' + key + '">In Bath & North East Somerset ozone is monitored at one site in the Royal Victoria Park. The monitoring is done using ultraviolet absorption spectrophotometry with readings producing a 15 minute average of ozone levels.</p>';
+
+                    html += '<h4 id="hdHistoryO3' + key + '">Ozone (O3) graph</h4>';
+                    html += '<div id="divHistoryO3' + key + '" style="width: 800px; height: 300px;"></div>';
+                    html += '<p class="pO3' + key + '">Ozone (O3) is a very reactive chemical formed by the reaction of nitrogen dioxide and sunlight. The formation of ozone in the atmosphere is also contributed to by the presence of Volatile Organic Compounds (VOC).</p>'
+                    html += '<p class="pO3' + key + '">Ozone is removed at night and inside buildings by reactions with surfaces. Ozone is found in lowest concentrations next to busy roads where to the release of nitric oxide (NO) from vehicles are highest. Nitric oxide reacts with ozone and removes it from the atmosphere. The highest concentrations of ozone occur during the summer months when sunlight is at its strongest in rural areas where there is little nitric oxide from vehicles to remove the ozone.</p>';
+                    html += '<p class="pO3' + key + '">High concentrations of ozone at ground level can irritate the delicate surface tissues of the body, including lungs, eyes and nose.</p>';
+                    html += '<p class="pO3' + key + '">In Bath & North East Somerset ozone is monitored at one site in the Royal Victoria Park. The monitoring is done using ultraviolet absorption spectrophotometry with readings producing a 15 minute average of ozone levels.</p>';
+
+                    html += '<h4 id="hdHistoryCO' + key + '">Carbon monoxide (CO) graph</h4>';
+                    html += '<div id="divHistoryCO' + key + '" style="width: 800px; height: 300px;"></div>';
+                    html += '<p class="pCO' + key + '">Carbon monoxide (CO) is a very dangerous pollutant gas causing death in very high concentrations. It is colourless, tasteless and has no smell.</p>'
+                    html += '<p class="pCO' + key + '">Carbon Monoxide is produced in the process of combustion, complete combustion in the presence of oxygen produces carbon dioxide (CO2) but if there is a deficiency of oxygen carbon monoxide is produced. Almost all combustion produces some carbon monoxide, the amount depending on the efficiency of the process and the availability and access of oxygen.</p>';
+                    html += '<p class="pCO' + key + '">The main sources of carbon monoxide are vehicle emissions and the burning of fossil fuels. The emission of carbon monoxide from vehicles is at its highest at low speeds, therefore the peak values are recorded during the morning and evening rush hour periods.</p>';
+                    html += '<p class="pCO' + key + '">Carbon Monoxide interferes with the red bloods cells ability to transport oxygen around the body, at high concentrations the effect on the body is severe resulting in loss of consciousness and even death. Those with existing heart problems are particularly at risk.</p>';
+                    html += '<p class="pCO' + key + '">Carbon monoxide is monitored at two sites across the Bath & North East Somerset: Windsor Bridge and the Guildhall. The monitoring is done using gas filter correlation infra red analysis.</p>';
+
+                    if (j == 0) {
+                        $('#tabsLocations').append('<li class="active"><a href="#' + key + '" data-toggle="tab">' + val.title + ' </a></li>');
+                        $('#divTabContent').append('<div class="tab-pane active" id="' + key + '">' + html + '</div>');
+                    }
+                    else {
+                        $('#tabsLocations').append('<li><a href="#' + key + '" data-toggle="tab">' + val.title + ' </a></li>');
+                        $('#divTabContent').append('<div class="tab-pane" id="' + key + '">' + html + '</div>');
+                    }
+
+                    // PM10 data chart
+                    if (locations[key].PM10.length > 1) {
+                        var PM10VisData = google.visualization.arrayToDataTable(locations[key].PM10);
+                        var options = {
+                            width: 800, height: 300,
+                            hAxis: { title: 'Time measured (1 hour intervals)', textPosition: 'out', direction: -1, showTextEvery: 12 },
+                            vAxis: { title: 'μg/m³' },
+                            legend: { position: "none" }
+                        };
+                        var PM10chart = new google.visualization.ColumnChart(document.getElementById('divHistoryPM10' + key));
+                        PM10chart.draw(PM10VisData, options);
+                    }
+                    else {
+                        $('#divHistoryPM10' + key).hide();
+                        $('#hdHistoryPM10' + key).hide();
+                        $('.pPM10' + key).hide();
+                    }
+
+                    // NO2 data chart
+                    if (locations[key].NO2.length > 1) {
+                        var NO2VisData = google.visualization.arrayToDataTable(locations[key].NO2);
+                        var options = {
+                            width: 800, height: 300,
+                            hAxis: { title: 'Time measured (15 min intervals)', textPosition: 'out', direction: -1, showTextEvery: 12 },
+                            vAxis: { title: 'ppb' },
+                            legend: { position: "none" }
+                        };
+                        var NO2chart = new google.visualization.ColumnChart(document.getElementById('divHistoryNO2' + key));
+                        NO2chart.draw(NO2VisData, options);
+                    }
+                    else {
+                        $('#divHistoryNO2' + key).hide();
+                        $('#hdHistoryNO2' + key).hide();
+                        $('.pNO2' + key).hide();
+                    }
+
+
+                    // NOX data chart
+                    if (locations[key].NOX.length > 1) {
+                        var NOXVisData = google.visualization.arrayToDataTable(locations[key].NOX);
+                        var options = {
+                            width: 800, height: 300,
+                            hAxis: { title: 'Time measured (15 min intervals)', textPosition: 'out', direction: -1, showTextEvery: 12 },
+                            vAxis: { title: 'ppb' },
+                            legend: { position: "none" }
+                        };
+                        var NOXchart = new google.visualization.ColumnChart(document.getElementById('divHistoryNOX' + key));
+                        NOXchart.draw(NOXVisData, options);
+                    }
+                    else {
+                        $('#divHistoryNOX' + key).hide();
+                        $('#hdHistoryNOX' + key).hide();
+                        $('.pNOX' + key).hide();
+                    }
+
+
+                    // NO data chart
+                    if (locations[key].NO.length > 1) {
+                        var NOVisData = google.visualization.arrayToDataTable(locations[key].NO);
+                        var options = {
+                            width: 800, height: 300,
+                            hAxis: { title: 'Time measured (15 min intervals)', textPosition: 'out', direction: -1, showTextEvery: 12 },
+                            vAxis: { title: 'ppb' },
+                            legend: { position: "none" }
+                        };
+                        var NOchart = new google.visualization.ColumnChart(document.getElementById('divHistoryNO' + key));
+                        NOchart.draw(NOVisData, options);
+                        $('#divHistoryNO' + key).hide();
+                        $('#hdHistoryNO' + key).hide();
+                        $('.pNO' + key).hide();
+                    }
+                    else {
+                        $('#divHistoryNO' + key).hide();
+                        $('#hdHistoryNO' + key).hide();
+                        $('.pNO' + key).hide();
+                    }
+
+                    // O3 data chart]
+                    if (locations[key].O3.length > 1) {
+                        var O3VisData = google.visualization.arrayToDataTable(locations[key].O3);
+                        var options = {
+                            width: 800, height: 300,
+                            hAxis: { title: 'Time measured (1 hour intervals)', textPosition: 'out', direction: -1, showTextEvery: 12 },
+                            vAxis: { title: 'ppb' },
+                            legend: { position: "none" }
+                        };
+                        var O3chart = new google.visualization.ColumnChart(document.getElementById('divHistoryO3' + key));
+                        O3chart.draw(O3VisData, options);
+                    }
+                    else {
+                        $('#divHistoryO3' + key).hide();
+                        $('#hdHistoryO3' + key).hide();
+                        $('.pO3' + key).hide();
+                    }
+
+                    // CO data chart]
+                    if (locations[key].CO.length > 1) {
+                        var COVisData = google.visualization.arrayToDataTable(locations[key].CO);
+                        var options = {
+                            width: 800, height: 300,
+                            hAxis: { title: 'Time measured (15 min intervals)', textPosition: 'out', direction: -1, showTextEvery: 12 },
+                            vAxis: { title: 'ppm' },
+                            legend: { position: "none" }
+                        };
+                        var COchart = new google.visualization.ColumnChart(document.getElementById('divHistoryCO' + key));
+                        COchart.draw(COVisData, options);
+                    }
+                    else {
+                        $('#divHistoryCO' + key).hide();
+                        $('#hdHistoryCO' + key).hide();
+                        $('.pCO' + key).hide();
+                    }
+
+                    j++;
+                });
+                $('#tabsLocations a:first').tab('show')
+            });
+        });
+
+        //////////////////////////////////////////
+        // Maths bits for getting distance
+        //////////////////////////////////////////
+        if (typeof Number.prototype.toRadians == 'undefined') {
+            Number.prototype.toRadians = function () { return this * Math.PI / 180; };
+        }
+        function getDistance(startLat, startLng, endLat, endLng) {
+            var R = 6371; // km
+            var φ1 = startLat.toRadians();
+            var φ2 = endLat.toRadians();
+            var Δφ = (endLat - startLat).toRadians();
+            var Δλ = (endLng - startLng).toRadians();
+            var a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+                    Math.cos(φ1) * Math.cos(φ2) *
+                    Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c;
+            // return distance to 1 decimal place
+            return Math.round(d * 10) / 10;
+        }
+    </script>
+</body>
+</html>
