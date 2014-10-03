@@ -107,8 +107,8 @@
                     locations[key].O3 = new Array(['Date Measured', 'Value', { role: 'style' }]);
                     $.each(data, function (i, dataObj) {
                         if (dataObj.sensor_location_name == locationObj.title) {
-                            if (dataObj.pm10 && Number(dataObj.pm10) < 250 && locations[key].PM10.length < 81) {
-                                var pm10Val = Number(dataObj.pm10)
+                            if (dataObj.pm10 && Number(dataObj.pm10) < 250 && locations[key].PM10.length < 101) {
+                                var pm10Val = Number(dataObj.pm10);
                                 var colour = '#9CFF9C';
                                 if (pm10Val <= 101) colour = '#CE30FF';
                                 if (pm10Val <= 100) colour = '#990000';
@@ -120,19 +120,20 @@
                                 if (pm10Val <= 50) colour = '#31CF00';
                                 if (pm10Val <= 33) colour = '#31FF00';
                                 if (pm10Val <= 16) colour = '#9CFF9C';
-                                locations[key].PM10.push([moment(dataObj.datetime).format('ddd HH:mm'), Number(dataObj.pm10), colour]);
+                                locations[key].PM10.push([moment(dataObj.datetime).format('ddd HH:mm'), Number(pm10Val.toFixed(2)), colour]);
                             }
 
-                            if (dataObj.nox && locations[key].NOX.length < 81) {
-                                locations[key].NOX.push([moment(dataObj.datetime).format('ddd HH:mm'), Number(dataObj.nox)]);
+                            if (dataObj.nox && locations[key].NOX.length < 101) {
+                                var noxVal = Number(dataObj.nox);
+                                locations[key].NOX.push([moment(dataObj.datetime).format('ddd HH:mm'), noxVal]);
                             }
 
-                            if (dataObj.no && locations[key].NO.length < 81) {
+                            if (dataObj.no && locations[key].NO.length < 101) {
                                 locations[key].NO.push([moment(dataObj.datetime).format('ddd HH:mm'), Number(dataObj.no)]);
                             }
 
-                            if (dataObj.no2 && locations[key].NO2.length < 81) {
-                                var no2Val = Number(dataObj.no2)
+                            if (dataObj.no2 && locations[key].NO2.length < 101) {
+                                var no2Val = Number(dataObj.no2) * 1.9125
                                 var colour = '#9CFF9C';
                                 if (no2Val <= 601) colour = '#CE30FF';
                                 if (no2Val <= 600) colour = '#990000';
@@ -144,15 +145,15 @@
                                 if (no2Val <= 200) colour = '#31CF00';
                                 if (no2Val <= 134) colour = '#31FF00';
                                 if (no2Val <= 67) colour = '#9CFF9C';
-                                locations[key].NO2.push([moment(dataObj.datetime).format('ddd HH:mm'), Number(dataObj.no2), colour]);
+                                locations[key].NO2.push([moment(dataObj.datetime).format('ddd HH:mm'), Number(no2Val.toFixed(2)), colour]);
                             }
-							
-                            if (dataObj.co && locations[key].CO.length < 81) {
+
+                            if (dataObj.co && locations[key].CO.length < 101) {
                                 locations[key].CO.push([moment(dataObj.datetime).format('ddd HH:mm'), Number(dataObj.co)]);
                             }
 							
-                            if (dataObj.o3 && locations[key].O3.length < 81) {
-                                var o3Val = Number(dataObj.o3)
+                            if (dataObj.o3 && locations[key].O3.length < 101) {
+                                var o3Val = Number(dataObj.o3) * 1.9957;
                                 var colour = '#9CFF9C';
                                 if (o3Val <= 241) colour = '#CE30FF';
                                 if (o3Val <= 240) colour = '#990000';
@@ -164,7 +165,7 @@
                                 if (o3Val <= 100) colour = '#31CF00';
                                 if (o3Val <= 66) colour = '#31FF00';
                                 if (o3Val <= 33) colour = '#9CFF9C';
-                                locations[key].O3.push([moment(dataObj.datetime).format('ddd HH:mm'), Number(dataObj.o3), colour]);
+                                locations[key].O3.push([moment(dataObj.datetime).format('ddd HH:mm'), Number(o3Val.toFixed(2)), colour]);
                             }
                         }
                     });
@@ -266,7 +267,7 @@
                         var options = {
                             width: 800, height: 300,
                             hAxis: { title: 'Time measured (15 min intervals)', textPosition: 'out', direction: -1, showTextEvery: 12 },
-                            vAxis: { title: 'ppb' },
+                            vAxis: { title: 'μg/m³' },
                             legend: { position: "none" }
                         };
                         var NO2chart = new google.visualization.ColumnChart(document.getElementById('divHistoryNO2' + key));
@@ -323,7 +324,7 @@
                         var options = {
                             width: 800, height: 300,
                             hAxis: { title: 'Time measured (1 hour intervals)', textPosition: 'out', direction: -1, showTextEvery: 12 },
-                            vAxis: { title: 'ppb' },
+                            vAxis: { title: 'μg/m³' },
                             legend: { position: "none" }
                         };
                         var O3chart = new google.visualization.ColumnChart(document.getElementById('divHistoryO3' + key));
