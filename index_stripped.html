@@ -19,18 +19,16 @@
         <div class="row">
             <div class="col-sm-12">
                     <h1>Air pollution levels</h1>
-                    <p>The following graphs show current monitoring data taken from the continuous analysers located around Bath. Enter your address below to see the monitors in order of distance.</p>
+                    <p>The following graphs show current monitoring data taken from the continuous analysers located around Bath. Enter your address below to see the monitors ordered by distance from your location.</p>
                     <div class="input-group">
                         <span class="input-group-addon">Address</span>
                         <input type="text" class="form-control" id="txtAddress" placeholder="Your address">
                     </div>
-
                 <h2>Air quality monitors</h2>
                 <ul class="nav nav-tabs" id="tabsLocations" role="tablist"></ul>
                 <div class="tab-content" id="divTabContent"></div>
             </div>
         </div>
-
     </div> <!-- /container -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -183,6 +181,8 @@
 
                     html += '<h3 id="hdHistoryPM10' + key + '">Particulate matter (PM10) graph</h3>';
                     html += '<div id="divHistoryPM10' + key + '" style="width: 800px; height: 300px;"></div>';
+                    html += '<h4 class="pPM10' + key + '">What do the numbers mean?</h4>';
+                    html += '<p class="pPM10' + key + '">The <a href="http://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info" target="_blank">Daily Air Quality Index</a> are banding levels for pollutants from Low to Very High.  For PM10 this should be based on the running daily mean.  The above values are individual readings taken at hourly intervals.</p>';
                     html += '<table class="table table-striped pPM10' + key + '"><tbody><tr><th>Index</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr><tr><th>Band</th><td>Low</td><td>Low</td><td>Low</td><td>Moderate</td><td>Moderate</td><td>Moderate</td><td>High</td><td>High</td><td>High</td><td>Very High</td></tr><tr><th>&micro;g/m&sup3;</th><td>0-16</td><td>17-33</td><td>34-50</td><td>51-58</td><td>59-66</td><td>67-75</td><td>76-83</td><td>84-91</td><td>92-100</td><td>101 or more</td></tr></tbody></table>';
                     html += '<p class="pPM10' + key + '">Particles are a mixture of organic and inorganic matter. The size of the particle determines the time it remains in the air and it interaction with humans. Particles above a diameter of 10 micrometres (mm) will be trapped by the nose and pharynx whilst those smaller will be able to penetrate the lung and alveoli. For this reason the monitoring of particles usually concentrates on the particles likely to be deposited in the lungs, referred to as PM10.</p>'
                     html += '<p class="pPM10' + key + '">Particles are derived from a number of sources. Primary particles are those emitted directly into the atmosphere (such as in vehicle exhaust). Secondary particles are formed by chemical reactions.</p>';
@@ -193,6 +193,8 @@
 
                     html += '<h3 id="hdHistoryNO2' + key + '">Nitrogen dioxide (NO2) graph</h3>';
                     html += '<div id="divHistoryNO2' + key + '" style="width: 800px; height: 300px;"></div>';
+                    html += '<h4 class="pNO2' + key + '">What do the numbers mean?</h4>';
+                    html += '<p class="pNO2' + key + '">The <a href="http://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info" target="_blank">Daily Air Quality Index</a> are banding levels for pollutants from Low to Very High.  For Nitrogen dioxide this should be based on the running daily mean.  The above values are individual readings taken at 15 minute intervals.</p>';
                     html += '<table class="table table-striped pNO2' + key + '"><tbody><tr><th>Index</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr><tr><th>Band</th><td>Low</td><td>Low</td><td>Low</td><td>Moderate</td><td>Moderate</td><td>Moderate</td><td>High</td><td>High</td><td>High</td><td>Very High</td></tr><tr><th>&micro;g/m&sup3;</th><td>0-67</td><td>68-134</td><td>135-200</td><td>201-267</td><td>268-334</td><td>335-400</td><td>401-467</td><td>468-534</td><td>535-600</td><td>601 or more</td></tr></tbody></table>';
                     html += '<p class="pNO2' + key + '">Nitrogen dioxide (NO2) is one of the most dangerous of the oxides of nitrogen to human health. It is released directly into the environment or formed by the conversion of nitric oxide (NO) in oxygen or ozone. The biggest contributions to nitrogen dioxide levels in the UK are from motor vehicles, electrical supply industry and the industrial and commercial sectors. Domestic heating also forms a significant source in urban areas.</p>'
                     html += '<p class="pNO2' + key + '">In general the levels of Nitrogen dioxide peak in urban areas during the two rush hour periods of the day. The greatest levels are generally on cold days with low wind speeds when a blanket of cold air traps the nitrogen dioxide at ground level, allowing levels to build.</p>';
@@ -216,7 +218,9 @@
 
                     html += '<h3 id="hdHistoryO3' + key + '">Ozone (O3) graph</h3>';
                     html += '<div id="divHistoryO3' + key + '" style="width: 800px; height: 300px;"></div>';
-					html += '<table class="table table-striped pO3' + key + '" summary="Boundaries Between Index Points for Each Pollutant"><tbody><tr><th>Index</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr><tr><th>Band</th><td class="bg_low1">Low</td><td class="bg_low2">Low</td><td class="bg_low3">Low</td><td class="bg_moderate4">Moderate</td><td class="bg_moderate5">Moderate</td><td class="bg_moderate6">Moderate</td><td class="bg_high7">High</td><td class="bg_high8">High</td><td class="bg_high9">High</td><td class="bg_very_high10">Very High</td></tr><tr><th>&micro;g/m&sup3;</th><td class="bg_low1">0-33</td><td class="bg_low2">34-66</td><td class="bg_low3">67-100</td><td class="bg_moderate4">101-120</td><td class="bg_moderate5">121-140</td><td class="bg_moderate6">141-160</td><td class="bg_high7">161-187</td><td class="bg_high8">188-213</td><td class="bg_high9">214-240</td><td class="bg_very_high10">241 or more</td></tr></tbody></table>';
+                    html += '<h4 class="pO3' + key + '">What do the numbers mean?</h4>';
+                    html += '<p class="pO3' + key + '">The <a href="http://uk-air.defra.gov.uk/air-pollution/daqi?view=more-info" target="_blank">Daily Air Quality Index</a> are banding levels for pollutants from Low to Very High.  For Ozone this should be based on the running 8-hourly mean.  The above values are individual readings taken at hourly intervals.</p>';
+                    html += '<table class="table table-striped pO3' + key + '" summary="Boundaries Between Index Points for Each Pollutant"><tbody><tr><th>Index</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr><tr><th>Band</th><td class="bg_low1">Low</td><td class="bg_low2">Low</td><td class="bg_low3">Low</td><td class="bg_moderate4">Moderate</td><td class="bg_moderate5">Moderate</td><td class="bg_moderate6">Moderate</td><td class="bg_high7">High</td><td class="bg_high8">High</td><td class="bg_high9">High</td><td class="bg_very_high10">Very High</td></tr><tr><th>&micro;g/m&sup3;</th><td class="bg_low1">0-33</td><td class="bg_low2">34-66</td><td class="bg_low3">67-100</td><td class="bg_moderate4">101-120</td><td class="bg_moderate5">121-140</td><td class="bg_moderate6">141-160</td><td class="bg_high7">161-187</td><td class="bg_high8">188-213</td><td class="bg_high9">214-240</td><td class="bg_very_high10">241 or more</td></tr></tbody></table>';
 					html += '<p class="pO3' + key + '">Ozone (O3) is a very reactive chemical formed by the reaction of nitrogen dioxide and sunlight. The formation of ozone in the atmosphere is also contributed to by the presence of Volatile Organic Compounds (VOC).</p>'
                     html += '<p class="pO3' + key + '">Ozone is removed at night and inside buildings by reactions with surfaces. Ozone is found in lowest concentrations next to busy roads where to the release of nitric oxide (NO) from vehicles are highest. Nitric oxide reacts with ozone and removes it from the atmosphere. The highest concentrations of ozone occur during the summer months when sunlight is at its strongest in rural areas where there is little nitric oxide from vehicles to remove the ozone.</p>';
                     html += '<h4 class="pO3' + key + '">What are the potential health effects?</h4>';
